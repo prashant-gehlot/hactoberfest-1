@@ -1,0 +1,15 @@
+// find factorial of a number in C++.
+#include<iostream>
+using namespace std;
+int main() {
+int num,fact=1;
+cout<<"enter the number:";
+cin>>num;
+for(int a=1;a<=num;a++){
+fact=fact*a;}
+cout<<"the factorial value of given number is=" <<fact <<endl;
+
+
+return 0;
+
+}
