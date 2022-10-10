@@ -1,35 +1,30 @@
-#include<iostream>
+// C++ program to print largest contiguous array sum
+#include <iostream>
 using namespace std;
-//Naive Solution.
-int MaxSum(int arr[] , int n)
+ 
+int maxSubArraySum(int a[], int size)
 {
-    int res = 0 ;
-    for(int i = 0 ; i<n ; i++ )
-    {
-        int count = 0; 
-        for(int j = i ; j<n ; j++)
-        {
-            count += arr[j];
-            res = max(res , count);
-        }
+    int max_so_far = INT_MIN, max_ending_here = 0;
+ 
+    for (int i = 0; i < size; i++) {
+        max_ending_here = max_ending_here + a[i];
+        if (max_so_far < max_ending_here)
+            max_so_far = max_ending_here;
+ 
+        if (max_ending_here < 0)
+            max_ending_here = 0;
     }
-    return res;
+    return max_so_far;
 }
-//Efficient Solution.
-int MaximumSum(int arr[] , int n)
-{
-    int res = 0;
-    int maxend = arr[0];
-    for(int i = 0 ; i<n ; i++)
-    {
-        maxend = max(maxend + arr[i] , arr[i]);
-        res = max(maxend , res);
-    }
-    return res;
-}
+ 
+// Driver Code
 int main()
 {
-    int n = 6; 
-    int arr[n] = {-3, 8, -2, 4, -5, 6};
-    cout<<MaximumSum(arr , n);
+    int a[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+    int n = sizeof(a) / sizeof(a[0]);
+ 
+    // Function Call
+    int max_sum = maxSubArraySum(a, n);
+    cout << "Maximum contiguous sum is " << max_sum;
+    return 0;
 }
